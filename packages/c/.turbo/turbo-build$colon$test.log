@@ -1,0 +1,5 @@
+
+> @fsdev/c@2.0.2-beta.0 build:test D:\code\test\test-mono\packages\c
+> rimraf lib && vite build
+
+'rimraf' 不是内部或外部命令，也不是可运行的程序

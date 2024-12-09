@@ -1,0 +1,16 @@
+{
+  "name": "@fsdev/a",
+  "version": "4.0.0-beta.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:test": "rimraf lib && vite build",
+    "build:prod": "rimraf lib && vite build"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "http://nexus.fscut.com/repository/npm-dev/"
+  }
+}

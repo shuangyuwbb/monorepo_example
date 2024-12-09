@@ -1,0 +1,33 @@
+before_script:
+  - |
+    if [[ "$CI_COMMIT_MESSAGE" =~ "Merge" ]]; then
+      echo "Skipping pipeline due to 'Merge' in commit message"
+      exit 0
+    fi
+
+stages:
+  - version
+
+variables:
+  GIT_USER_NAME: "update_version"
+  GIT_BRANCH_NAME: "develop"
+
+change-version:
+  stage: version
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - node_modules/
+  script:
+    - echo $CI_COMMIT_MESSAGE
+    - pnpm changeset version
+    - git add .
+    - git commit -m "chore:update version"
+    # - git remote set-url origin https://wubinbin:$CI_UPDATE_TOKEN@git.fscut.com/weblaser/crepes.git
+    - git push origin HEAD:$GIT_BRANCH_NAME --no-verify
+  tags:
+    - runner124
+  rules:
+    - if: "$GITLAB_USER_NAME != $GIT_USER_NAME && $CI_COMMIT_REF_NAME == $GIT_BRANCH_NAME"
+      when: always
+    - when: never

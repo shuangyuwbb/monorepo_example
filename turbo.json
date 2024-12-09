@@ -1,0 +1,32 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+        "build:prod": {
+            "outputs": [
+                "lib/**"
+            ],
+            "dependsOn": [
+                "^build:prod"
+            ],
+            "cache": true
+        },
+        "build:test": {
+            "outputs": [
+                "lib/**"
+            ],
+            "dependsOn": [
+                "^build:test"
+            ],
+            "cache": false
+        },
+        "build:watch": {
+            "outputs": [
+                "lib/**"
+            ],
+            "dependsOn": [
+                "^build:test"
+            ],
+            "cache": true
+        }
+    }
+}

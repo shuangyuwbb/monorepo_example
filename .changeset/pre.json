@@ -1,0 +1,17 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@fsdev/a": "3.0.1",
+    "@fsdev/b": "2.0.1",
+    "@fsdev/c": "2.0.2-beta.0"
+  },
+  "changesets": [
+    "eleven-books-rest",
+    "kind-numbers-press",
+    "lovely-readers-give",
+    "sharp-socks-wash",
+    "slow-rabbits-dance",
+    "twenty-weeks-march"
+  ]
+}

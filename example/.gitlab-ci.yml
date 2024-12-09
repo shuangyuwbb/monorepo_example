@@ -1,0 +1,41 @@
+stages:
+  - install
+  - eslint
+  - notify
+
+cache:
+  key: '$CI_COMMIT_REF_SLUG'
+
+install:
+  stage: install
+  cache:
+         paths:
+           - node_modules/
+  script: 
+   - cnpm install
+  tags:
+   - sonar
+
+eslint:
+  stage: eslint
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - npm run lint
+  tags:
+    - sonar
+ 
+notify-fail:
+  stage: notify
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - >
+      curl 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=需要找企业微信管理员'
+      -H 'Content-Type: application/json'
+      -d "{\"msgtype\":\"markdown\",\"markdown\":{\"content\":\"项目构建结果：<font color=\\"warning\\">失败</font>\n>本次构建由：  $GITLAB_USER_NAME 触发\n>项目名称：$CI_PROJECT_NAME\n>提交号：$CI_COMMIT_SHA\n>提交日志：$CI_COMMIT_MESSAGE\n>构建分支：  $CI_COMMIT_REF_NAME\n>流水线地址：[$CI_PIPELINE_URL]($CI_PIPELINE_URL)\"}}"
+  when: on_failure
+  tags:
+    - sonar

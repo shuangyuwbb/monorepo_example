@@ -1,0 +1,4 @@
+
+> @fsdev/b@2.0.2-beta.0 build:test D:\code\test\test-mono\packages\b
+> rimraf lib && vite build
+

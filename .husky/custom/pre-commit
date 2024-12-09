@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/custom/branch-check.sh"
+
+npx husky add .husky/pre-commit "npm test"

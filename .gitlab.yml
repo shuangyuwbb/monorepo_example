@@ -1,0 +1,31 @@
+stages:
+  - install
+  - pnpm
+  - version
+
+build-install:
+  stage: install
+  script:
+    - cnpm install 
+  tags:
+    - sonar
+  only:
+    - develop
+
+build-install:
+  stage: pnpm
+  script:
+    - cnpm i -g pnpm
+  tags:
+    - sonar
+  only:
+    - develop
+
+change-version:
+  stage: version
+  script:
+    - pnpm changeset version
+  tags:
+    - sonar
+  only:
+    - develop
